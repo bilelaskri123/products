@@ -11,6 +11,26 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'products',
+    loadChildren: () => import('./components/products/products.module').then( m => m.ProductsPageModule)
+  },
+  {
+    path: 'product-item/:productId',
+    loadChildren: () => import('./components/product-item/product-item.module').then( m => m.ProductItemPageModule)
+  },
+  {
+    path: 'add-product',
+    loadChildren: () => import('./components/add-product/add-product.module').then( m => m.AddProductPageModule)
+  },
+  {
+    path: 'local',
+    loadChildren: () => import('./components/local/local.module').then( m => m.LocalPageModule)
+  },
+  {
+    path: 'category',
+    loadChildren: () => import('./components/category/category.module').then( m => m.CategoryPageModule)
+  },
 ];
 
 @NgModule({

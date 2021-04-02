@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="langue == 'fr'" style="text-align: center">category</ion-title>
+    <ion-title *ngIf="langue == 'ar'" style="text-align: center">صنف</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="bgColor">
+  <div>
+    <h1 class="title" *ngIf="langue == 'fr'">Choisir Category</h1>
+    <h1 class="title" *ngIf="langue == 'ar'">إختر صنف</h1>
+  </div>
+
+
+
+  <form #form="ngForm">
+    <ion-select class="select" placeholder="choisir Categorie" *ngIf="langue == 'fr'" name="categoryfr" ngModel required >
+      <ion-select-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</ion-select-option>
+    </ion-select>
+    <ion-select class="select" placeholder="إختر صنف" *ngIf="langue == 'ar'" style="text-align: right" name="categoryAr" ngModel required>
+      <ion-select-option *ngFor="let category of categories" [value]="category.name">{{category.name}}</ion-select-option>
+    </ion-select>
+
+    <div id="container" >
+      <ion-button *ngIf="langue == 'fr'"
+                  size="large"
+                  color="primary"
+                  expand="block"
+                  [disabled]="form.invalid"
+                  (click)="selectCategory(form)"
+      >Suivant</ion-button
+      >
+
+      <ion-button *ngIf="langue == 'ar'"
+                  size="large"
+                  color="primary"
+                  expand="block"
+                  [disabled]="form.invalid"
+                  (click)="selectCategory(form)"
+      >تابع</ion-button
+      >
+    </div>
+  </form>
+
+
+
+</ion-content>

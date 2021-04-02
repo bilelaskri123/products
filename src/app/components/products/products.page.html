@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar *ngIf="langue =='fr' " (ionChange)="filter($event)"></ion-searchbar>
+    <ion-searchbar style="text-align: right" placeholder="البحث" *ngIf="langue =='ar' " (ionChange)="filter($event)"></ion-searchbar>
+    <!--<ion-buttons slot="end" >
+      <ion-button (click)="showOption()"><ion-icon name="list-outline"></ion-icon></ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!--<ion-row *ngIf="show">
+    <ion-col size="12" *ngIf="langue =='fr' ">
+      <ion-select (ionChange)="selectInput($event)" placeholder="choisir une ville">
+        <ion-select-option *ngFor="let local of localsFr"  [value]="local" > {{local}} </ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="12" *ngIf="langue =='ar' ">
+      <ion-select (ionChange)="selectInput($event)" placeholder="choisir une ville">
+        <ion-select-option *ngFor="let local of localsAr"  [value]="local" > {{local}} </ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-list *ngIf="langue =='fr'">
+    <ion-item (click)="showProduct(product.ProductId)" *ngFor="let product of products">
+      <ion-avatar slot="start">
+        <img [src]="product.imageUrl" alt=""/>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{product.productName}}</h2>
+        <span>{{product.local}} </span>  <span style="float: right">prix {{product.mediumPrice}} {{product.unity}}</span>
+        <p>{{product.date | date}} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="langue =='ar'">
+    <ion-item (click)="showProduct(product.ProductId)" *ngFor="let product of products">
+      <ion-avatar slot="end">
+        <img [src]="product.imageUrl" alt=""/>
+      </ion-avatar>
+      <ion-label>
+        <h2 style="text-align: right">{{product.productName}}</h2>
+        <span style="float: right">{{product.local}}</span> <span style="float: left"> الثمن: {{product.mediumPrice}} {{product.unity}} </span> <br>
+        <p style="text-align: right"> {{product.date | date}} </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

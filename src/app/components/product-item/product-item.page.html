@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="langue == 'fr'">produit</ion-title>
+    <ion-title *ngIf="langue == 'ar'">المنتوج</ion-title>
+    <ion-avatar slot="end">
+      <img [src]="imageUrl" alt="">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header *ngIf="langue == 'fr'">
+      <ion-card-subtitle>{{local}}</ion-card-subtitle>
+      <ion-card-title>{{productName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-header *ngIf="langue == 'ar'">
+    <ion-card-subtitle style="text-align: right">{{local}}</ion-card-subtitle>
+    <ion-card-title style="text-align: right">{{productName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: block;">
+        <div *ngIf="langue == 'fr'">
+          <span>Prix moyen: {{mediumPrice}} {{unity}} </span> <br>
+          <span>Prix minimale: {{minPrice}} {{unity}}</span> <br>
+          <span>Prix maximale: {{maxPrice}} {{unity}}</span> <br>
+        </div>
+
+        <div *ngIf="langue == 'ar'">
+          <span style="float: right"> الثمن الادنى: {{mediumPrice}}  {{unity}} </span> <br>
+          <span style="float: right">   متوسط الثمن: {{minPrice}} {{unity}}</span> <br>
+          <span style="float: right"> الثمن الاقصى: {{maxPrice}} {{unity}}</span> <br>
+        </div>
+
+        <canvas baseChart width="400" height="400"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

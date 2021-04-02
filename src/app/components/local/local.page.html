@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="langue == 'fr'" style="text-align: center">locale</ion-title>
+    <ion-title *ngIf="langue == 'ar'" style="text-align: center">المكان</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="bgColor">
+  <div>
+    <h1 class="title" *ngIf="langue == 'fr'">Choisir Local</h1>
+    <h1 class="title" *ngIf="langue == 'ar'">إختر مكان</h1>
+  </div>
+
+  <form #form="ngForm">
+    <ion-select class="select" placeholder="choisir local" *ngIf="langue == 'fr'" name="localFr" ngModel required>
+      <ion-select-option *ngFor="let local of locals" [value]="local.name">{{local.name}}</ion-select-option>
+    </ion-select>
+
+
+    <ion-select class="select" placeholder="إختر مكان" *ngIf="langue == 'ar'" style="text-align: right" name="localAr" ngModel required>
+      <ion-select-option *ngFor="let local of locals" [value]="local.name">{{local.name}}</ion-select-option>
+    </ion-select>
+
+    <div id="container" >
+      <ion-button *ngIf="langue == 'fr'"
+                  size="large"
+                  color="primary"
+                  expand="block"
+                  [disabled]="form.invalid"
+                  (click)="selectLocal(form)"
+      >Suivant</ion-button
+      >
+
+      <ion-button *ngIf="langue == 'ar'"
+                  size="large"
+                  color="primary"
+                  expand="block"
+                  [disabled]="form.invalid"
+                  (click)="selectLocal(form)"
+      >تابع</ion-button
+      >
+    </div>
+  </form>
+
+</ion-content>
